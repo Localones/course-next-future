@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Post from "@/components/Post";
+import {collection, onSnapshot, orderBy, query} from "@firebase/firestore";
+import {db} from "@/firebase";
 
 const Posts = () => {
 
-    const posts = [
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        return onSnapshot(
+            query(collection(db, "posts"),
+                orderBy('timestamp', "desc")),
+            (snapshot => setPosts(snapshot.docs)));
+    }, []);
+
+
+    /*const posts = [
         {
             id: '1',
             username: 'codewithsahand',
@@ -18,11 +30,11 @@ const Posts = () => {
             img: "https://images.unsplash.com/photo-1677095042813-678fb5a3e7e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
             caption: 'New ocean'
         },
-    ]
+    ]*/
 
     return (
         <div>
-            {posts.map(post => <Post key={post.id} {...post} />)}
+            {posts.map(post => <Post key={post.id} {...post.data()} />)}
         </div>
     );
 };

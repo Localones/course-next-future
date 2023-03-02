@@ -9,23 +9,23 @@ import {HiOutlineEmojiHappy} from 'react-icons/hi'
 interface Post {
     username: string,
     userImg: string,
-    img: string,
     caption: string
+    profileImg: string,
 }
 
-const Post = ({username, userImg, img, caption}: Post) => {
+const Post = ({username, image, caption, profileImg}: Post) => {
     return (
         <div className='bg-white my-7 border rounded-md'>
             <div className="flex items-center p-5">
-                <Image className='h-12 rounded-full object-cover border p-1 mr-3' src={userImg} alt={username}
+                <Image className='h-12 rounded-full object-cover border p-1 mr-3' src={profileImg} alt={username}
                        width={70} height={30}/>
                 <p className='font-bold flex-1'>{username}</p>
             </div>
 
             {/* Post Image */}
 
-            <Image className="object-cover " src={img}
-                   alt={img} width={1000} height={50}/>
+            <Image className="object-cover " src={image}
+                   alt={image} width={1000} height={50}/>
 
             {/* Post Buttons */}
 
