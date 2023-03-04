@@ -44,7 +44,11 @@ export default function Header(): JSX.Element {
                                className="rounded-full cursor-pointer" width={50} height={50} alt={"avatar"}/>
                     </div>
                 ) : (
-                    <button onClick={signIn}>Sign in</button>
+                    <>
+                        <BiHomeAlt
+                            className="text-2xl cursor-pointer hover:scale-110 transition-transform duration-200 ease-out"/>
+                        <button onClick={signIn}>Sign in</button>
+                    </>
                 )}
 
             </div>

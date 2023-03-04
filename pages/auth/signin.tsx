@@ -11,12 +11,20 @@ export default function signin({providers}) {
                 {Object.values(providers).map((provider) => (
                     <div key={provider.name}>
                         <p>This app is created for learning purpose</p>
-                        <button className="bg-red-400 rounded-lg p-3 text-white
+                        {provider.name == "GitHub" ?
+                            <button className="bg-blue-400 rounded-lg p-3 text-white
+                            hover:bg-blue-500" onClick={() => signIn(provider.id, {
+                                callbackUrl: "/"
+                            })}>
+                                Войти {provider.name}
+                            </button> : (
+                                <button className="bg-red-400 rounded-lg p-3 text-white
                             hover:bg-red-500" onClick={() => signIn(provider.id, {
-                            callbackUrl: "/"
-                        })}>
-                            Sign in with {provider.name}
-                        </button>
+                                    callbackUrl: "/"
+                                })}>
+                                    Войти {provider.name}
+                                </button>
+                            )}
                     </div>
                 ))}
             </div>

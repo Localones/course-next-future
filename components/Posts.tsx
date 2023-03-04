@@ -12,7 +12,7 @@ const Posts = () => {
             query(collection(db, "posts"),
                 orderBy('timestamp', "desc")),
             (snapshot => setPosts(snapshot.docs)));
-    }, []);
+    }, [db]);
 
 
     /*const posts = [
@@ -31,10 +31,10 @@ const Posts = () => {
             caption: 'New ocean'
         },
     ]*/
-
+    // <Post key={post.id} {...post.data()} />
     return (
         <div>
-            {posts.map(post => <Post key={post.id} {...post.data()} />)}
+            {posts.map(post => <Post key={post.id} id={post.id} {...post.data()} />)}
         </div>
     );
 };
